@@ -2,6 +2,8 @@ package com.clinica.clinica.models;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,9 +21,9 @@ public class Clinica {
     @Column(name = "id_atencion")
     private Long idAtencion;
 
-    @Size(min = 1, max = 8, message = "El RUT debe tener entre 1 y 8 dígitos")
-    @NotBlank (message = "El RUT no puede estar vacío")
-    @Pattern (regexp = "\\d+", message = "El RUT debe contener solo dígitos")
+    @NotNull(message = "El RUT no puede estar vacío")
+    @Min(value = 1,        message = "El RUT debe ser mayor que cero")
+    @Max(value = 99999999, message = "El RUT debe tener máximo 8 dígitos")
     @Column(name = "rut_paciente")
     private Long rutPaciente;
 
@@ -31,39 +33,41 @@ public class Clinica {
     @Column (name = "dv_paciente")
     private String dvPaciente;
 
-    @Size(min=4, max=50, message="El nombre del paciente debe tener entre 4 y 50 caracteres")
+    @Size(min=4, max=50, message="Los nombres del paciente deben tener entre 4 y 50 caracteres")
     @Pattern (regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "El nombre del paciente solo puede contener letras y espacios")
     @NotBlank (message = "El nombre del paciente no puede estar vacío")
     @Column(name = "nombres_paciente")
     private String nombresPaciente;
 
-    @Size(min=4, max=50, message="El apellido del paciente debe tener entre 4 y 50 caracteres")
+    @Size(min=4, max=50, message="Los apellidos del paciente deben tener entre 4 y 50 caracteres")
     @Pattern (regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "Los apellidos del paciente solo pueden contener letras y espacios")
     @NotBlank (message = "Los apellidos del paciente no pueden estar vacíos")
     @Column(name = "apellidos_paciente")
     private String apellidosPaciente;
 
-    @NotBlank (message = "La fecha de nacimiento no puede estar vacía")
+    @JsonFormat (pattern = "yyyy-MM-dd")
+    @Past (message = "La fecha de nacimiento debe ser una fecha pasada")
+    @NotNull  (message = "La fecha de nacimiento no puede estar vacía")
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
-
+    @Size(min=20, max=200, message="El historial médico debe tener entre 20 y 200 caracteres")
     @NotBlank (message = "El historial médico no puede estar vacío")
     @Column(name = "historial_medico")
     private String historialMedico;
 
-    @NotBlank (message = "El número de atenciones no puede estar vacío")
-    @Pattern (regexp = "\\d+", message = "El número de atenciones debe contener solo dígitos")
+    @NotNull (message="El número de atenciones no puede estar vacío")
+    @Max (value=999, message = "El número de atenciones no debe exceder los 3 dígitos")
     @Column(name = "numero_atenciones")
     private int NumeroAtenciones;
 
-    @Size(min=4, max=50, message="El nombre del médico debe tener entre 4 y 50 caracteres")
+    @Size(min=4, max=50, message="Los nombres del médico deben tener entre 4 y 50 caracteres")
     @Pattern (regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "El nombre del médico solo puede contener letras y espacios")
     @NotBlank (message = "El nombre del médico no puede estar vacío")
     @Column(name = "nombre_medico")
     private String NombreMedico;
 
-    @Size(min=4, max=50, message="El apellido del médico debe tener entre 4 y 50 caracteres")
+    @Size(min=4, max=50, message="Los apellidos del médico deben tener entre 4 y 50 caracteres")
     @Pattern (regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "El apellido del médico solo puede contener letras y espacios")
     @NotBlank (message = "El apellido del médico no puede estar vacío")
     @Column(name = "apellido_medico")

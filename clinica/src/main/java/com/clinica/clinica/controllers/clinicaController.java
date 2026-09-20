@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clinica.clinica.models.Clinica;
 import com.clinica.clinica.service.ClinicaService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,12 +41,12 @@ public class ClinicaController {
 
 
     @PostMapping 
-    public Clinica createClinica(@RequestBody Clinica clinica) {
+    public Clinica createClinica(@Valid @RequestBody Clinica clinica) {
         return clinicaService.createAtencionClinica(clinica);
     }
 
     @PutMapping ("/{idAtencion}")
-    public Clinica updateClinica(@PathVariable Long idAtencion, @RequestBody Clinica clinica) {
+    public Clinica updateClinica(@Valid @PathVariable Long idAtencion, @RequestBody Clinica clinica) {
         return clinicaService.updateAtencionClinica(idAtencion, clinica);
     }
 
