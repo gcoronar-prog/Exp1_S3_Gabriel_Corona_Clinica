@@ -46,7 +46,7 @@ public class ClinicaController {
     }
 
     @PutMapping ("/{idAtencion}")
-    public Clinica updateClinica(@Valid @PathVariable Long idAtencion, @RequestBody Clinica clinica) {
+    public Clinica updateClinica (@PathVariable Long idAtencion, @Valid @RequestBody Clinica clinica) {
         return clinicaService.updateAtencionClinica(idAtencion, clinica);
     }
 
