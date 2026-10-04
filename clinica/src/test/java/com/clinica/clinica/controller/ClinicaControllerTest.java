@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -53,9 +54,9 @@ class ClinicaControllerTest {
         clinica.setRutPaciente(12345678L);
         clinica.setNombresPaciente("Juan");
         clinica.setApellidosPaciente("Perez");
-        //clinica.setFechaNacimiento("01/01/1990");
-        clinica.setHistorialMedico("Historial Test");
-        clinica.setNombreMedico("Dr. Smith");
+        clinica.setFechaNacimiento(LocalDate.of(1990, 1, 1));
+        clinica.setHistorialMedico("Historial medico para el Test");
+        clinica.setNombreMedico("Long");
         clinica.setApellidoMedico("Johnson");
         clinica.setDvPaciente("9");
     } 
