@@ -27,9 +27,9 @@ class ClinicaModelTest {
         assert(clinica.getRutPaciente().equals(12345678L));
         assert(clinica.getNombresPaciente().equals("Juan"));
         assert(clinica.getApellidosPaciente().equals("Perez"));
-        //assert(clinica.getFechaNacimiento().equals("01/01/1990"));
-        assert(clinica.getHistorialMedico().equals("Historial Test"));
-        assert(clinica.getNombreMedico().equals("Dr. Smith"));
+        assert(clinica.getFechaNacimiento().equals(LocalDate.of(1990, 1, 1)));
+        assert(clinica.getHistorialMedico().equals("Historial medico para el Test"));
+        assert(clinica.getNombreMedico().equals("Long"));
         assert(clinica.getApellidoMedico().equals("Johnson"));
         assert(clinica.getDvPaciente().equals("9"));
     }
